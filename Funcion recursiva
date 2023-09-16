@@ -1,0 +1,23 @@
+; Link para correr el programa: https://onecompiler.com/commonlisp/3zmrxc7hf
+
+(defun hacer-lista-asientos (asientos nombres)
+  ; Verifica si la lista de asientos está vacía
+  (if (null asientos)
+      ; Si está vacía, devuelve una lista vacía
+      nil
+      ; Si no está vacía, crea una lista combinada
+      (let ((lista-combinada (cons (first asientos) ; Agrega el primer asiento
+                                    (cons (first nombres) ; Agrega el primer nombre
+                                          (hacer-lista-asientos (rest asientos) ; Llama recursivamente con el resto de asientos
+                                                               (rest nombres)))))) ; Llama recursivamente con el resto de nombres
+        
+        ; Imprime el resultado
+        (print lista-combinada)
+        
+        ; Devuelve la lista combinada
+        lista-combinada)))
+
+(hacer-lista-asientos '(1 2 3 4) '(Hector Harlit Enmanuel Estevez))
+
+; Imprime:
+; (1 Hector 2 Harlit 3 Enmanuel 4 Estevez)
