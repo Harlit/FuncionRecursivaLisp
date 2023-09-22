@@ -6,18 +6,19 @@
       ; Si está vacía, devuelve una lista vacía
       nil
       ; Si no está vacía, crea una lista combinada
-      (let ((lista-combinada (cons (first asientos) ; Agrega el primer asiento
-                                    (cons (first nombres) ; Agrega el primer nombre
-                                          (hacer-lista-asientos (rest asientos) ; Llama recursivamente con el resto de asientos
-                                                               (rest nombres)))))) ; Llama recursivamente con el resto de nombres
+      (let ((primer-asiento (first asientos)) ; Obtiene el primer asiento
+            (primer-nombre (first nombres)) ; Obtiene el primer nombre
+            (resto-asientos (rest asientos)) ; Obtiene el resto de asientos
+            (resto-nombres (rest nombres))) ; Obtiene el resto de nombres
         
-        ; Imprime el resultado
-        (print lista-combinada)
-        
-        ; Devuelve la lista combinada
-        lista-combinada)))
+        ; Llama recursivamente con el resto de asientos y nombres
+        (let ((lista-combinada (hacer-lista-asientos resto-asientos resto-nombres)))
+          
+          ; Agrega el primer asiento y nombre a la lista combinada
+          (cons primer-asiento (cons primer-nombre lista-combinada))))))
 
-(hacer-lista-asientos '(1 2 3 4) '(Hector Harlit Enmanuel Estevez))
+; Llama a la función con los valores de ejemplo y la imprime
+(print (hacer-lista-asientos '(1 2 3 4) '(Hector Harlit Enmanuel Estevez)))
 
 ; Imprime:
 ; (1 Hector 2 Harlit 3 Enmanuel 4 Estevez)
